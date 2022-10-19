@@ -45,6 +45,8 @@ dependencies:
   animated_flip_counter: ^0.2.5
   kakao_flutter_sdk_user: ^1.2.2
   carousel_slider: ^4.1.1
+  google_sign_in: ^5.4.2
+  flutter_signin_button: ^2.0.0
 
 dev_dependencies:
   flutter_test:

@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "350620314065-baogqnq8f0uobffh2jmnh1qv5jf6r6nu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cafe_booking",
+            "certificate_hash": "8901278bb595e64efb2b6b4e2169729f7f961e01"
+          }
+        },
+        {
           "client_id": "350620314065-c2fcum19pgf9laqogn017uicca0p9th5.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,6 +37,13 @@
             {
               "client_id": "350620314065-c2fcum19pgf9laqogn017uicca0p9th5.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "350620314065-nr5m8kffco1len7mm0p7tcrjcioadd0f.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.cafeBooking"
+              }
             }
           ]
         }

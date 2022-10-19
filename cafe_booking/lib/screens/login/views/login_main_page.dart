@@ -6,6 +6,7 @@ import 'package:cafe_booking/uitilites/sources.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:get/get.dart';
 
 class LoginMainPage extends GetView<LoginController> {
@@ -41,13 +42,18 @@ class LoginMainPage extends GetView<LoginController> {
               padding: const EdgeInsets.symmetric(
                 horizontal: space_xxl,
               ),
-              child: Column(
-                children: [
-                  Flexible(
-                    child: firebaseAuthLogin(),
-                  ),
-                  Flexible(child: socialSNSOAuth())
-                ],
+              child: Container(
+                decoration: BoxDecoration(border: Border.all()),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Flexible(
+                      flex: 2,
+                      child: firebaseAuthLogin(),
+                    ),
+                    Flexible(flex: 1, child: socialSNSOAuth())
+                  ],
+                ),
               )),
         ),
       ),
@@ -305,11 +311,21 @@ class LoginMainPage extends GetView<LoginController> {
 
   Widget socialSNSOAuth() {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         GestureDetector(
             onTap: () {},
             child:
-                Image.asset("assets/images/login/kakao_login_large_wide.png"))
+                Image.asset("assets/images/login/kakao_login_large_wide.png")),
+        SizedBox(
+          width: Get.size.width,
+          child: SignInButton(
+            Buttons.Google,
+            onPressed: () {
+              controller.signInWithGoogle();
+            },
+          ),
+        )
       ],
     );
   }

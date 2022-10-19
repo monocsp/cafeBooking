@@ -67,6 +67,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '350620314065',
     projectId: 'cafebooking-9a2cd',
     storageBucket: 'cafebooking-9a2cd.appspot.com',
+    androidClientId: '350620314065-baogqnq8f0uobffh2jmnh1qv5jf6r6nu.apps.googleusercontent.com',
     iosClientId: '350620314065-nr5m8kffco1len7mm0p7tcrjcioadd0f.apps.googleusercontent.com',
     iosBundleId: 'com.example.cafeBooking',
   );
@@ -77,6 +78,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '350620314065',
     projectId: 'cafebooking-9a2cd',
     storageBucket: 'cafebooking-9a2cd.appspot.com',
+    androidClientId: '350620314065-baogqnq8f0uobffh2jmnh1qv5jf6r6nu.apps.googleusercontent.com',
     iosClientId: '350620314065-nr5m8kffco1len7mm0p7tcrjcioadd0f.apps.googleusercontent.com',
     iosBundleId: 'com.example.cafeBooking',
   );

@@ -1,11 +1,15 @@
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:cafe_booking/data/hive_enum.dart';
+import 'package:cafe_booking/firebase_options.dart';
 import 'package:cafe_booking/screens/login/repository/login_repository.dart';
 import 'package:cafe_booking/uitilites/abstract.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class LoginController extends CustomGetxController {
@@ -81,8 +85,40 @@ class LoginController extends CustomGetxController {
     }
   }
 
-  Future signUp() async {
-    await LoginRepository()
-        .signUp({'email': 'ckstjq987@naver.com', 'password': 'ckstjq987'});
+  ///일반적인 이메일 회원가입 시 사용하는 함수
+  Future firebaseSignUp() async {
+    await LoginRepository().firebaseSignUp(
+        {'email': 'ckstjq987@naver.com', 'password': 'ckstjq987'});
+  }
+
+  ///구글로 로그인하기
+  Future<UserCredential?> signInWithGoogle() async {
+    // Trigger the authentication flow
+    var platformClientId;
+    try {
+      if (Platform.isAndroid) {
+        platformClientId =
+            DefaultFirebaseOptions.currentPlatform.androidClientId;
+      } else if (Platform.isIOS) {
+        platformClientId = DefaultFirebaseOptions.currentPlatform.iosClientId;
+      }
+      final GoogleSignInAccount? googleUser =
+          await GoogleSignIn(clientId: platformClientId).signIn();
+
+      // Obtain the auth details from the request
+      final GoogleSignInAuthentication? googleAuth =
+          await googleUser?.authentication;
+
+      // Create a new credential
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth?.accessToken,
+        idToken: googleAuth?.idToken,
+      );
+
+      // Once signed in, return the UserCredential
+      return await FirebaseAuth.instance.signInWithCredential(credential);
+    } catch (e) {
+      log("Google sign in error :$e");
+    }
   }
 }

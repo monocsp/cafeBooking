@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginRepository {
-  Future signUp(Map<String, dynamic> body) async {
+  Future firebaseSignUp(Map<String, dynamic> body) async {
     try {
       UserCredential userCredential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(
