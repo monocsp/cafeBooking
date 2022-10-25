@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:get/get.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 class LoginMainPage extends GetView<LoginController> {
   FocusNode passwordFocusNode = FocusNode();
@@ -30,6 +31,7 @@ class LoginMainPage extends GetView<LoginController> {
         ),
         body: SingleChildScrollView(
           physics: const ClampingScrollPhysics(),
+          reverse: true,
           child: Container(
 
               ///전체 스크린사이즈에서
@@ -317,6 +319,27 @@ class LoginMainPage extends GetView<LoginController> {
             onTap: () {},
             child:
                 Image.asset("assets/images/login/kakao_login_large_wide.png")),
+        // GestureDetector(
+        //     onTap: () {},
+        //     child: Image.asset(
+        //       "assets/images/login/naver_login_light.png",
+        //       height: 50,
+        //     )),
+        SignInWithAppleButton(
+          onPressed: () async {
+            final credential = await SignInWithApple.getAppleIDCredential(
+              scopes: [
+                AppleIDAuthorizationScopes.email,
+                AppleIDAuthorizationScopes.fullName,
+              ],
+            );
+//https://cafebooking-9a2cd.firebaseapp.com/__/auth/handler
+            print(credential);
+
+            // Now send the credential (especially `credential.authorizationCode`) to your server to create a session
+            // after they have been validated with Apple (see `Integration` section for more information on how to do this)
+          },
+        ),
         SizedBox(
           width: Get.size.width,
           child: SignInButton(
