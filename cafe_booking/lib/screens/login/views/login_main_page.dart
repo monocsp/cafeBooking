@@ -31,7 +31,6 @@ class LoginMainPage extends GetView<LoginController> {
         ),
         body: SingleChildScrollView(
           physics: const ClampingScrollPhysics(),
-          reverse: true,
           child: Container(
 
               ///전체 스크린사이즈에서
