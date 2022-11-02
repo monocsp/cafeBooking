@@ -2,8 +2,10 @@ import 'dart:developer';
 
 import 'package:cafe_booking/data/hive_enum.dart';
 import 'package:cafe_booking/screens/login/controller/login_controller.dart';
+import 'package:cafe_booking/screens/login/controller/social/kakao_login.dart';
 import 'package:cafe_booking/uitilites/sources.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
@@ -83,16 +85,12 @@ class LoginMainPage extends GetView<LoginController> {
               hintText: '최소 6자리로 설정해주세요',
               suffixIcon: IconButton(
                   icon: Icon(
-                    controller.passwordVisible.value
-                        ? Icons.visibility_off
-                        : Icons.visibility,
-                    color: !controller.confirmPassword.value
-                        ? complementaryColor
-                        : Colors.green,
+                    controller.passwordVisible.value ? Icons.visibility_off : Icons.visibility,
+                    color:
+                        !controller.confirmPassword.value ? complementaryColor : Colors.green,
                   ),
                   onPressed: () {
-                    controller
-                        .passwordVisible(!controller.passwordVisible.value);
+                    controller.passwordVisible(!controller.passwordVisible.value);
                   }),
               border: myinputborder(),
               focusedBorder: myfocusborder()),
@@ -114,9 +112,9 @@ class LoginMainPage extends GetView<LoginController> {
           log('value : $value');
           if (controller.confirmEmail.value) return null;
 
-          if (!EmailValidator.validate(
-              controller.emailTextEditingController.text))
+          if (!EmailValidator.validate(controller.emailTextEditingController.text)) {
             return '이메일형식이 아닙니다.';
+          }
         },
         decoration: InputDecoration(
             prefixIcon: const Icon(
@@ -162,9 +160,7 @@ class LoginMainPage extends GetView<LoginController> {
               const Text(
                 '아이디',
                 style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: complementaryColor),
+                    fontSize: 16, fontWeight: FontWeight.bold, color: complementaryColor),
               ),
               emailTextField(),
             ],
@@ -178,9 +174,7 @@ class LoginMainPage extends GetView<LoginController> {
               const Text(
                 '비밀번호',
                 style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: complementaryColor),
+                    fontSize: 16, fontWeight: FontWeight.bold, color: complementaryColor),
               ),
               Column(
                 mainAxisSize: MainAxisSize.min,
@@ -202,11 +196,9 @@ class LoginMainPage extends GetView<LoginController> {
                           onChanged: (bool? value) {
                             value ??= false;
                             if (value) {
-                              controller.loginHiveBox
-                                  .put(LoginHiveEnum.autoLogin.hiveKey, 1);
+                              controller.loginHiveBox.put(LoginHiveEnum.autoLogin.hiveKey, 1);
                             } else {
-                              controller.loginHiveBox
-                                  .put(LoginHiveEnum.autoLogin.hiveKey, 0);
+                              controller.loginHiveBox.put(LoginHiveEnum.autoLogin.hiveKey, 0);
                             }
                             log('controller.loginHiveBox.get(LoginHiveEnum.autoLogin.hiveKey) : ${controller.loginHiveBox.get(LoginHiveEnum.autoLogin.hiveKey)}');
                             controller.autoLoginStatus(value);
@@ -272,8 +264,7 @@ class LoginMainPage extends GetView<LoginController> {
         // log('value : $value');
         if (controller.confirmEmail.value) return null;
 
-        if (!EmailValidator.validate(
-            controller.emailTextEditingController.text)) {
+        if (!EmailValidator.validate(controller.emailTextEditingController.text)) {
           return '이메일형식이 아닙니다.';
         }
       },
@@ -315,9 +306,12 @@ class LoginMainPage extends GetView<LoginController> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         GestureDetector(
-            onTap: () {},
-            child:
-                Image.asset("assets/images/login/kakao_login_large_wide.png")),
+            onTap: () async {
+              // bool isSuccess = await controller.signInWithKakao(KakaoLogin());
+              // log("SUCCESS : $isSuccess");
+              log("FirebaseAuth.instance.currentUser?.uid ${FirebaseAuth.instance.currentUser?.uid}");
+            },
+            child: Image.asset("assets/images/login/kakao_login_large_wide.png")),
         // GestureDetector(
         //     onTap: () {},
         //     child: Image.asset(

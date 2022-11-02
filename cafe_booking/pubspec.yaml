@@ -49,6 +49,8 @@ dependencies:
   flutter_signin_button: ^2.0.0
   flutter_naver_login: ^1.7.0
   sign_in_with_apple: ^4.1.0
+  http: ^0.13.5
+  rive: ^0.9.1
 
 dev_dependencies:
   flutter_test:

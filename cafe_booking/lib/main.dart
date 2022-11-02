@@ -1,3 +1,4 @@
+import 'package:cafe_booking/core/values/firebase_api.dart';
 import 'package:cafe_booking/data/hive_enum.dart';
 import 'package:cafe_booking/data/services/firebase_controller.dart';
 
@@ -10,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
 
 import 'screens/dashboard/views/dashboard_main_page.dart';
 
@@ -19,6 +21,8 @@ Future main() async {
   await Hive.openBox(LoginHiveEnum.openBox.openBoxName);
   // WidgetsFlutterBinding.ensureInitialized();
   Get.put(FCMController(), permanent: true);
+  //For Kakao oauth
+  KakaoSdk.init(nativeAppKey: kakaoNativeAppKey);
 
   runApp(MyApp());
 }
@@ -49,7 +53,6 @@ class _MyAppStatefulState extends State<MyAppStateful> {
   @override
   Widget build(BuildContext context) {
     // return IntroPage();
-    return Obx(() =>
-        LoginController.to.isConfirmLogin ? MainDashboard() : IntroPage());
+    return Obx(() => LoginController.to.isConfirmLogin ? MainDashboard() : IntroPage());
   }
 }

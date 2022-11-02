@@ -3,6 +3,8 @@ import 'dart:io';
 
 import 'package:cafe_booking/data/hive_enum.dart';
 import 'package:cafe_booking/firebase_options.dart';
+import 'package:cafe_booking/screens/login/controller/social/abstract_login.dart';
+import 'package:cafe_booking/screens/login/controller/social/kakao_login.dart';
 import 'package:cafe_booking/screens/login/repository/login_repository.dart';
 import 'package:cafe_booking/uitilites/abstract.dart';
 import 'package:email_validator/email_validator.dart';
@@ -11,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
 
 class LoginController extends CustomGetxController {
   static LoginController get to => Get.find();
@@ -77,8 +80,7 @@ class LoginController extends CustomGetxController {
   }
 
   autoLogin() {
-    int? checkAutoLogin =
-        loginHiveBox.get(LoginHiveEnum.autoLogin.hiveKey) ?? 0;
+    int? checkAutoLogin = loginHiveBox.get(LoginHiveEnum.autoLogin.hiveKey) ?? 0;
     if (checkAutoLogin == 1) {
       autoLoginStatus(true);
       return;
@@ -87,8 +89,8 @@ class LoginController extends CustomGetxController {
 
   ///일반적인 이메일 회원가입 시 사용하는 함수
   Future firebaseSignUp() async {
-    await LoginRepository().firebaseSignUp(
-        {'email': 'ckstjq987@naver.com', 'password': 'ckstjq987'});
+    await LoginRepository()
+        .firebaseSignUp({'email': 'ckstjq987@naver.com', 'password': 'ckstjq987'});
   }
 
   ///구글로 로그인하기
@@ -97,8 +99,7 @@ class LoginController extends CustomGetxController {
     var platformClientId;
     try {
       if (Platform.isAndroid) {
-        platformClientId =
-            DefaultFirebaseOptions.currentPlatform.androidClientId;
+        platformClientId = DefaultFirebaseOptions.currentPlatform.androidClientId;
       } else if (Platform.isIOS) {
         platformClientId = DefaultFirebaseOptions.currentPlatform.iosClientId;
       }
@@ -106,8 +107,7 @@ class LoginController extends CustomGetxController {
           await GoogleSignIn(clientId: platformClientId).signIn();
 
       // Obtain the auth details from the request
-      final GoogleSignInAuthentication? googleAuth =
-          await googleUser?.authentication;
+      final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
 
       // Create a new credential
       final credential = GoogleAuthProvider.credential(
@@ -119,6 +119,28 @@ class LoginController extends CustomGetxController {
       return await FirebaseAuth.instance.signInWithCredential(credential);
     } catch (e) {
       log("Google sign in error :$e");
+      return null;
     }
   }
+
+  Future<bool> signInWithKakao(SocialLogin socialLogin) async {
+    // //로그인이 실패하거나
+    // //로그인했지만, kakao oauth token을 firebase oauth와 연동에 실패했을 때
+    bool loginStatus = await socialLogin.login();
+    log("login status : $loginStatus");
+    if (loginStatus) {
+      return await LoginRepository().kakaoSignIn();
+    }
+
+    return false;
+
+    // log("success : $success");
+  }
+
+  // Future logoutWithKakao() async {
+  //   await _socialLogin.logout();
+  //   await FirebaseAuth.instance.signOut();
+  //   isLogined = false;
+  //   user = null;
+  // }
 }

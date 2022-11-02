@@ -23,32 +23,28 @@ class MainDashboard extends GetView<DashboardController> {
             color: Colors.deepPurple[100],
             child: Padding(
               padding: const EdgeInsets.only(left: 10),
-              child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Icon(
-                      Icons.flutter_dash,
-                      size: 50,
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    AnimatedFlipCounter(
-                      thousandSeparator: ',',
-                      textStyle: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20),
-                      value: 12000,
-                      prefix: '\u{20A9}',
-                    )
-                  ]),
+              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: const [
+                SizedBox(
+                  height: 10,
+                ),
+                Icon(
+                  Icons.flutter_dash,
+                  size: 50,
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                AnimatedFlipCounter(
+                  thousandSeparator: ',',
+                  textStyle: TextStyle(
+                      color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20),
+                  value: 12000,
+                  prefix: '\u{20A9}',
+                )
+              ]),
             ),
           ),
           const SizedBox(
@@ -99,12 +95,9 @@ class MainDashboard extends GetView<DashboardController> {
             },
             child: Obx(
               () => Card(
-                color: controller.isSelected.value == itemIndex
-                    ? primeColor
-                    : null,
+                color: controller.isSelected.value == itemIndex ? primeColor : null,
                 elevation: 4,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16)),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                 child: AspectRatio(
                   aspectRatio: 1.0,
                   child: Padding(
@@ -134,17 +127,14 @@ class MainDashboard extends GetView<DashboardController> {
                                   ),
                                   child: Container(
                                     child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         const Text(
                                           '커피명가',
                                           maxLines: 1,
                                           style: TextStyle(
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.bold),
+                                              fontSize: 12, fontWeight: FontWeight.bold),
                                         ),
                                         const Text(
                                           '호산점',

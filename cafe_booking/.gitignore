@@ -45,3 +45,6 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+google-service.json
+firebase_options.dart
+cafebooking-9a2cd-firebase-adminsdk-emefe-8badcacf7a.json
