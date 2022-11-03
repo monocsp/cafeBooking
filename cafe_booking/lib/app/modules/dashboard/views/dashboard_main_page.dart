@@ -1,9 +1,10 @@
 import 'package:animated_flip_counter/animated_flip_counter.dart';
-import 'package:cafe_booking/screens/dashboard/controller/dashboard_controller.dart';
 import 'package:cafe_booking/uitilites/sources.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../controller/dashboard_controller.dart';
 
 final list = [1, 2, 3, 4];
 final list2 = [1, 2, 3, 4, 5, 6];
@@ -14,61 +15,64 @@ class MainDashboard extends GetView<DashboardController> {
     Get.put(DashboardController());
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: SingleChildScrollView(
-        child: Column(children: [
-          Container(
-            width: Get.size.width,
-            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-            height: Get.size.height / 3,
-            color: Colors.deepPurple[100],
-            child: Padding(
-              padding: const EdgeInsets.only(left: 10),
-              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: const [
-                SizedBox(
-                  height: 10,
-                ),
-                Icon(
-                  Icons.flutter_dash,
-                  size: 50,
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                AnimatedFlipCounter(
-                  thousandSeparator: ',',
-                  textStyle: TextStyle(
-                      color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20),
-                  value: 12000,
-                  prefix: '\u{20A9}',
-                )
-              ]),
+      body: Padding(
+        padding: EdgeInsets.only(top: Get.mediaQuery.padding.top),
+        child: SingleChildScrollView(
+          child: Column(children: [
+            Container(
+              width: Get.size.width,
+              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+              height: Get.size.height / 3,
+              color: Colors.deepPurple[100],
+              child: Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: const [
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Icon(
+                    Icons.flutter_dash,
+                    size: 50,
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  AnimatedFlipCounter(
+                    thousandSeparator: ',',
+                    textStyle: TextStyle(
+                        color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20),
+                    value: 12000,
+                    prefix: '\u{20A9}',
+                  )
+                ]),
+              ),
             ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          SizedBox(
-            height: Get.size.height / 4.5,
-            width: Get.size.width,
-            child: carouselSliderBuilder(),
-          ),
-          const Divider(
-            color: Colors.grey,
-          ),
-          Obx(
-            () => AnimatedSwitcher(
-              duration: const Duration(milliseconds: 200),
-              child: controller.isSelected.value == -1
-                  ? const SizedBox(
-                      key: ValueKey(0),
-                    )
-                  : widgetElement(key: const ValueKey(1)),
+            const SizedBox(
+              height: 20,
             ),
-          )
-        ]),
+            SizedBox(
+              height: Get.size.height / 4.5,
+              width: Get.size.width,
+              child: carouselSliderBuilder(),
+            ),
+            const Divider(
+              color: Colors.grey,
+            ),
+            Obx(
+              () => AnimatedSwitcher(
+                duration: const Duration(milliseconds: 200),
+                child: controller.isSelected.value == -1
+                    ? const SizedBox(
+                        key: ValueKey(0),
+                      )
+                    : widgetElement(key: const ValueKey(1)),
+              ),
+            )
+          ]),
+        ),
       ),
     );
   }

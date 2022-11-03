@@ -1,8 +1,10 @@
 import 'dart:developer';
 
-import 'package:cafe_booking/data/hive_enum.dart';
-import 'package:cafe_booking/screens/login/controller/login_controller.dart';
-import 'package:cafe_booking/screens/login/controller/social/kakao_login.dart';
+import 'package:cafe_booking/app/data/hive_enum.dart';
+import 'package:cafe_booking/app/modules/login/controller/login_controller.dart';
+import 'package:cafe_booking/app/modules/login/controller/social/kakao_login.dart';
+import 'package:cafe_booking/app/widgets/common_dialog.dart';
+
 import 'package:cafe_booking/uitilites/sources.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -307,12 +309,16 @@ class LoginMainPage extends GetView<LoginController> {
       children: [
         GestureDetector(
             onTap: () async {
-              // bool isSuccess = await controller.signInWithKakao(KakaoLogin());
-              // log("SUCCESS : $isSuccess");
-              log("FirebaseAuth.instance.currentUser?.uid ${FirebaseAuth.instance.currentUser?.uid}");
+              CommonDialog.loadingDialog();
+              bool isSuccess = await controller.signInWithKakao(KakaoLogin());
+              // await Future.delayed(const Duration(seconds: 5));
+              Get.back();
+
+              log("SUCCESS : $isSuccess");
+              // log("FirebaseAuth.instance.currentUser?.uid ${FirebaseAuth.instance.currentUser?.uid}");
             },
             child: Image.asset("assets/images/login/kakao_login_large_wide.png")),
-        // GestureDetector(
+        // GestureDetector(_loginStatus
         //     onTap: () {},
         //     child: Image.asset(
         //       "assets/images/login/naver_login_light.png",

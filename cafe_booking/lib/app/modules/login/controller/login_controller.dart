@@ -1,11 +1,9 @@
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:cafe_booking/data/hive_enum.dart';
+import 'package:cafe_booking/app/data/hive_enum.dart';
+import 'package:cafe_booking/app/modules/login/repository/login_repository.dart';
 import 'package:cafe_booking/firebase_options.dart';
-import 'package:cafe_booking/screens/login/controller/social/abstract_login.dart';
-import 'package:cafe_booking/screens/login/controller/social/kakao_login.dart';
-import 'package:cafe_booking/screens/login/repository/login_repository.dart';
 import 'package:cafe_booking/uitilites/abstract.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -14,6 +12,8 @@ import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
+
+import 'social/abstract_login.dart';
 
 class LoginController extends CustomGetxController {
   static LoginController get to => Get.find();
@@ -126,15 +126,17 @@ class LoginController extends CustomGetxController {
   Future<bool> signInWithKakao(SocialLogin socialLogin) async {
     // //로그인이 실패하거나
     // //로그인했지만, kakao oauth token을 firebase oauth와 연동에 실패했을 때
-    bool loginStatus = await socialLogin.login();
-    log("login status : $loginStatus");
-    if (loginStatus) {
-      return await LoginRepository().kakaoSignIn();
+    bool openKakaoSignIn = await socialLogin.login();
+
+    if (!openKakaoSignIn) {
+      return false;
     }
-
-    return false;
-
-    // log("success : $success");
+    bool kakaoSignInStatus = await LoginRepository().kakaoSignIn();
+    if (!kakaoSignInStatus) {
+      return false;
+    }
+    _loginStatus(true);
+    return true;
   }
 
   // Future logoutWithKakao() async {

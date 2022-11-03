@@ -1,11 +1,10 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:cafe_booking/app/core/values/firebase_api.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart' as kakao;
 import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
-
-import '../../../core/values/firebase_api.dart';
 
 class LoginRepository {
   Future firebaseSignInWithCustomToken(token) async =>

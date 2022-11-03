@@ -1,6 +1,5 @@
-import 'package:cafe_booking/screens/login/views/login_main_page.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../modules/login/views/login_main_page.dart';
 
 class AppPages {
   static final pages = [

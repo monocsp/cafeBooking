@@ -55,7 +55,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyDIDgCmr1urCqrbGfbJ7dZNaL18hB1L6ys',
-    appId: '1:350620314065:android:b9a3bbaf124df16774d8f0',
+    appId: '1:350620314065:android:816ea34ab4c2476274d8f0',
     messagingSenderId: '350620314065',
     projectId: 'cafebooking-9a2cd',
     storageBucket: 'cafebooking-9a2cd.appspot.com',
@@ -63,23 +63,23 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyDS-cdX1dBrl1ZDsbZ10V7xb-7sk701Rac',
-    appId: '1:350620314065:ios:f262103649f0e10774d8f0',
+    appId: '1:350620314065:ios:3f17a4927c23d96174d8f0',
     messagingSenderId: '350620314065',
     projectId: 'cafebooking-9a2cd',
     storageBucket: 'cafebooking-9a2cd.appspot.com',
     androidClientId: '350620314065-baogqnq8f0uobffh2jmnh1qv5jf6r6nu.apps.googleusercontent.com',
-    iosClientId: '350620314065-nr5m8kffco1len7mm0p7tcrjcioadd0f.apps.googleusercontent.com',
-    iosBundleId: 'com.example.cafeBooking',
+    iosClientId: '350620314065-d20mlmg0an4kge9ahhpeg0b9e36eepku.apps.googleusercontent.com',
+    iosBundleId: 'com.pcs.cafeBooking',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
     apiKey: 'AIzaSyDS-cdX1dBrl1ZDsbZ10V7xb-7sk701Rac',
-    appId: '1:350620314065:ios:f262103649f0e10774d8f0',
+    appId: '1:350620314065:ios:3f17a4927c23d96174d8f0',
     messagingSenderId: '350620314065',
     projectId: 'cafebooking-9a2cd',
     storageBucket: 'cafebooking-9a2cd.appspot.com',
     androidClientId: '350620314065-baogqnq8f0uobffh2jmnh1qv5jf6r6nu.apps.googleusercontent.com',
-    iosClientId: '350620314065-nr5m8kffco1len7mm0p7tcrjcioadd0f.apps.googleusercontent.com',
-    iosBundleId: 'com.example.cafeBooking',
+    iosClientId: '350620314065-d20mlmg0an4kge9ahhpeg0b9e36eepku.apps.googleusercontent.com',
+    iosBundleId: 'com.pcs.cafeBooking',
   );
 }

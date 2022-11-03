@@ -1,19 +1,14 @@
-import 'package:cafe_booking/core/values/firebase_api.dart';
-import 'package:cafe_booking/data/hive_enum.dart';
-import 'package:cafe_booking/data/services/firebase_controller.dart';
-
-import 'package:cafe_booking/screens/login/controller/login_controller.dart';
-import 'package:cafe_booking/screens/login/views/intro.dart';
-
-import 'package:cafe_booking/screens/routes/app_pages.dart';
-
+import 'package:cafe_booking/app/core/values/firebase_api.dart';
+import 'package:cafe_booking/app/data/hive_enum.dart';
+import 'package:cafe_booking/app/data/services/firebase_controller.dart';
+import 'package:cafe_booking/app/modules/login/controller/login_controller.dart';
+import 'package:cafe_booking/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
-
-import 'screens/dashboard/views/dashboard_main_page.dart';
+import 'app/modules/dashboard/views/dashboard_main_page.dart';
+import 'app/modules/login/views/intro.dart';
 
 Future main() async {
   await Hive.initFlutter();

@@ -81,6 +81,7 @@ flutter:
     - assets/images/
     - assets/images/intro/
     - assets/images/login/
+    - assets/rives/
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

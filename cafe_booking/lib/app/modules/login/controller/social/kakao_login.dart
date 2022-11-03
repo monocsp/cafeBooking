@@ -1,7 +1,7 @@
 import 'dart:developer';
-
-import 'package:cafe_booking/screens/login/controller/social/abstract_login.dart';
 import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
+
+import 'abstract_login.dart';
 
 class KakaoLogin implements SocialLogin {
   @override

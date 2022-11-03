@@ -1,4 +1,4 @@
-import 'package:cafe_booking/screens/login/controller/login_controller.dart';
+import 'package:cafe_booking/app/modules/login/controller/login_controller.dart';
 import 'package:cafe_booking/uitilites/sources.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -49,8 +49,7 @@ class IntroPage extends GetView<LoginController> {
             decoration: const BoxDecoration(
                 color: primeColor,
                 borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(30),
-                    topRight: Radius.circular(30))),
+                    topLeft: Radius.circular(30), topRight: Radius.circular(30))),
             child: Padding(
               padding: const EdgeInsets.symmetric(
                 horizontal: space_xxl,
@@ -69,16 +68,14 @@ class IntroPage extends GetView<LoginController> {
         top: welcomeTextHeight,
         child: const Text(
           "안녕하세요!",
-          style: TextStyle(
-              color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20),
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20),
         ),
       ),
       Positioned(
         top: welcomeTextHeight + 40,
         child: const Text(
           "전국의 모든 사장님 및 알바생을 위한 어플입니다.",
-          style: TextStyle(
-              color: Colors.black, fontWeight: FontWeight.bold, fontSize: 16),
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 16),
         ),
       ),
       Positioned(
@@ -97,10 +94,7 @@ class IntroPage extends GetView<LoginController> {
             alignment: Alignment.center,
             child: const Text(
               '시작하기',
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold),
+              style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
             ),
           ),
         ),
